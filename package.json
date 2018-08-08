@@ -1,5 +1,5 @@
 {
-  "name": "meta-to-json",
+  "name": "gps2json",
   "version": "1.0.0",
   "description": "Bash Script to pull photo meta data into a JSON file",
   "main": "src/meta-to-json.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/internette/meta-to-json.git"
+    "url": "git+https://github.com/internette/gps2json.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/internette/meta-to-json/issues"
+    "url": "https://github.com/internette/gps2json/issues"
   },
-  "homepage": "https://github.com/internette/meta-to-json#readme",
+  "homepage": "https://github.com/internette/gps2json#readme",
   "devDependencies": {
     "exif": "^0.6.0"
   }

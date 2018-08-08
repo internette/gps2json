@@ -43,3 +43,4 @@ new Promise((resolve, reject)=> {
     console.error(err);
   });
 });
+process.exit();
