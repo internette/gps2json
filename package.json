@@ -2,9 +2,12 @@
   "name": "gps2json",
   "version": "1.0.0",
   "description": "Bash Script to pull photo meta data into a JSON file",
-  "main": "src/meta-to-json.js",
+  "main": "src/gps2json.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "gps2json": "./src/gps2json.js"
   },
   "repository": {
     "type": "git",
