@@ -2,7 +2,7 @@
   "name": "meta-to-json",
   "version": "1.0.0",
   "description": "Bash Script to pull photo meta data into a JSON file",
-  "main": "index.js",
+  "main": "src/meta-to-json.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
