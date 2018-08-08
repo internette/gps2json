@@ -19,7 +19,7 @@
     "url": "https://github.com/internette/gps2json/issues"
   },
   "homepage": "https://github.com/internette/gps2json#readme",
-  "devDependencies": {
+  "dependencies": {
     "exif": "^0.6.0"
   }
 }
