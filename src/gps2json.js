@@ -45,7 +45,8 @@ new Promise((resolve, reject)=> {
   }
 }).then((img_arr)=> {
   const json_obj = JSON.stringify(img_arr);
-  fs.writeFile(path.join(options.output, `${options.name}.json`), json_obj, (err)=> {
-    console.error(err);
-  });
+  if (!fs.existsSync(options.output)){
+    fs.mkdirSync(options.output);
+  }
+  fs.writeFileSync(path.join(options.output, `${options.name}.json`), json_obj);
 });
