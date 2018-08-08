@@ -14,11 +14,15 @@ const options = {
 }
 
 for(option of Object.keys(options)){
-  const full_regex = new RegExp(`--${option}`, 'gi');
-  const shorthand_regex = new RegExp(`-${option.substring(0,1)}`, 'gi');
-  if(full_regex.test(args.join('')) || shorthand_regex.test(args.join(''))){
-    options[option] = args.filter((arg)=> { return full_regex.test(arg) || shorthand_regex.test(arg) ? arg : undefined})[0].split('=')[1];
-    options[option] = options[option].indexOf('./') > -1 ? path.join(path.dirname(require.main.filename).dir, options[option]) : options[option];
+  const full_opt = `--${option}`
+  const short_opt = `-${option.substring(0,1)}`;
+  if(args.join('').includes(full_opt) || args.join('').includes(short_opt)){
+    options[option] = args.filter((arg)=> {
+      if(arg.includes(short_opt) || arg.includes(full_opt)){
+        return arg;
+      }
+    })[0].split('=')[1];
+    options[option] = options[option].indexOf('./') > -1 ? path.join(app_root, options[option]) : options[option];
   }
 }
 
