@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require( 'path' );
 const process = require( "process" );
-const app_root = require('app-root-path');
+const app_root = require('app-root-path').path;
 const ExifImage = require('exif').ExifImage;
 const args = process.argv.filter((itm)=> { return !/\/bin\/gps2json/g.test(itm) && !/\/bin\/node/g.test(itm) ? itm : undefined});
 
