@@ -30,7 +30,7 @@ new Promise((resolve, reject)=> {
     if(fs.statSync(img).isFile()){
       new ExifImage({ image : img }, function (error, exifData) {
         if (error)
-          console.error('Error: '+error.message);
+          return reject('Error: '+error.message);
         else
           meta_as_json.push({name: img, gps: exifData.gps});
           if(meta_as_json.length === files.length){
