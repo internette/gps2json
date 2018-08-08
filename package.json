@@ -1,6 +1,6 @@
 {
   "name": "gps2json",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "CLI to pull photo meta GPS data into a JSON file",
   "main": "src/gps2json.js",
   "scripts": {
@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/internette/gps2json#readme",
   "dependencies": {
-    "app-root-path": "^2.1.0",
     "exif": "^0.6.0"
   },
   "devDependencies": {}

@@ -3,14 +3,13 @@
 const fs = require('fs');
 const path = require( 'path' );
 const process = require( "process" );
-const app_root = require('app-root-path').path;
 const ExifImage = require('exif').ExifImage;
 const args = process.argv.filter((itm)=> { return !/\/bin\/gps2json/g.test(itm) && !/\/bin\/node/g.test(itm) ? itm : undefined});
 
 const options = {
   name: 'metadata',
-  folder: app_root,
-  output: app_root
+  folder: process.env.PWD,
+  output: process.env.PWD
 }
 
 for(option of Object.keys(options)){
@@ -22,7 +21,7 @@ for(option of Object.keys(options)){
         return arg;
       }
     })[0].split('=')[1];
-    options[option] = options[option].indexOf('./') > -1 ? path.join(app_root, options[option]) : options[option];
+    options[option] = options[option].indexOf('./') > -1 ? path.join(process.env.PWD, options[option]) : options[option];
   }
 }
 
