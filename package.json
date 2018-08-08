@@ -1,6 +1,6 @@
 {
   "name": "gps2json",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "CLI to pull photo meta GPS data into a JSON file",
   "main": "src/gps2json.js",
   "scripts": {
