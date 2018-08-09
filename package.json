@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/internette/gps2json#readme",
   "dependencies": {
-    "exif": "^0.6.0"
+    "exif": "^0.6.0",
+    "exif-geojson": "^1.0.0"
   },
   "devDependencies": {}
 }

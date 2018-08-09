@@ -4,12 +4,14 @@ const fs = require('fs');
 const path = require( 'path' );
 const process = require( "process" );
 const ExifImage = require('exif').ExifImage;
+const exifGeojson = require('exif-geojson');
 const args = process.argv.filter((itm)=> { return !/\/bin\/gps2json/g.test(itm) && !/\/bin\/node/g.test(itm) ? itm : undefined});
 
 const options = {
   name: 'metadata',
-  folder: process.env.PWD,
-  output: process.env.PWD
+  input: process.env.PWD,
+  output: process.env.PWD,
+  format: 'json'
 }
 
 for(option of Object.keys(options)){
@@ -27,16 +29,29 @@ for(option of Object.keys(options)){
 
 let meta_as_json = [];
 new Promise((resolve, reject)=> {
-  const files = fs.readdirSync(options.folder);
+  const files = fs.readdirSync(options.input);
   for(var i = 0; i < files.length; i++){
     const file = files[i];
-    const img = path.join(options.folder, file);
+    const img = path.join(options.input, file);
     if(fs.statSync(img).isFile()){
       new ExifImage({ image : img }, function (error, exifData) {
         if (error)
           return reject('Error: '+error.message);
         else
-          meta_as_json.push({name: img, gps: exifData.gps});
+          if (options.format === 'geojson'){
+            meta_as_json.push({
+              "type": "Feature", 
+              "properties": { 
+                "name": img, 
+                "marker-color": "#0000ff",
+                "marker-symbol": "rail-metro",
+                "line": "blue" 
+              }, 
+              "geometry": exifGeojson(exifData)
+            });
+          } else {
+            meta_as_json.push({name: img, gps: exifData.gps});
+          }
           if(meta_as_json.length === files.length){
             return resolve(meta_as_json);
           }
@@ -44,9 +59,13 @@ new Promise((resolve, reject)=> {
     }
   }
 }).then((img_arr)=> {
-  const json_obj = JSON.stringify(img_arr);
   if (!fs.existsSync(options.output)){
     fs.mkdirSync(options.output);
   }
-  fs.writeFileSync(path.join(options.output, `${options.name}.json`), json_obj);
+  if (options.format === 'geojson'){
+    fs.writeFileSync(path.join(options.output, `${options.name}.geojson`), JSON.stringify(img_arr));
+  } else {
+    img_arr = { "type": "FeatureCollection", "features": img_arr }
+    fs.writeFileSync(path.join(options.output, `${options.name}.json`), JSON.stringify(img_arr));
+  }
 });
