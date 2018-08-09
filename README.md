@@ -28,9 +28,9 @@ The following parameters are customizable:
   <br/>`-o` or `--output`: This is where the JSON file will live. The default is the folder of where the command was ran.
   <br/><br/>Example:
   ```js
-    gps2json -f=./src/assets/JSON
+    gps2json -o=./src/assets/JSON
 
-    gps2json --folder=../static
+    gps2json --output=../static
   ```
 
   **Format**
