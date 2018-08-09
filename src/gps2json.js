@@ -47,7 +47,10 @@ new Promise((resolve, reject)=> {
                 "marker-symbol": "rail-metro",
                 "line": "blue" 
               }, 
-              "geometry": exifGeojson(exifData)
+              "geometry": {
+                "type": exifGeojson(exifData).geometry.type.substring(0,1).toUpperCase() + exifGeojson(exifData).geometry.type.substring(1, exifGeojson(exifData).geometry.type.length),
+                "coordinates": exifGeojson(exifData).geometry.coordinates
+              }
             });
           } else {
             meta_as_json.push({name: img, gps: exifData.gps});
@@ -63,9 +66,9 @@ new Promise((resolve, reject)=> {
     fs.mkdirSync(options.output);
   }
   if (options.format === 'geojson'){
+    img_arr = { "type": "FeatureCollection", "features": img_arr }
     fs.writeFileSync(path.join(options.output, `${options.name}.geojson`), JSON.stringify(img_arr));
   } else {
-    img_arr = { "type": "FeatureCollection", "features": img_arr }
     fs.writeFileSync(path.join(options.output, `${options.name}.json`), JSON.stringify(img_arr));
   }
 });
