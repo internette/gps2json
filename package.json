@@ -2,6 +2,7 @@
   "name": "gps2json",
   "version": "1.1.1",
   "description": "CLI to pull photo meta GPS data into a JSON or GeoJSON file",
+  "keywords": ["gps", "json", "geo", "geolocation", "geojson", "exif", "data", "meta", "metadata", "image", "images", "mobile"],
   "main": "src/gps2json.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
